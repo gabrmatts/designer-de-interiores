@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Designer de interiores</title>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="img/Design_sem_nome-removebg-preview.png" alt="Logomarca">
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#">Lar</a></li>
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Nossos Serviços</a></li>
+                    <li><a href="#">Planos</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="botao-conta">
+                <button>
+                    <i class="fas fa-user"></i> Acessar Conta
+                </button>
+            </div>
+        </div>
+    </header>
+
+      <!-- Adicione o script aqui -->
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Menu de navegação responsivo
+            const navToggle = document.querySelector(".nav-toggle");
+            const navLinks = document.querySelector(".nav-links");
+
+            navToggle.addEventListener("click", function() {
+                navLinks.classList.toggle("active");
+            });
+
+            // Smooth scroll para links de navegação
+            const smoothScroll = (target, duration) => {
+                const targetElement = document.querySelector(target);
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - 50;
+                const startPosition = window.pageYOffset;
+                let startTime = null;
+
+                const ease = (t, b, c, d) => {
+                    t /= d / 2;
+                    if (t < 1) return c / 2 * t * t + b;
+                    t--;
+                    return -c / 2 * (t * (t - 2) - 1) + b;
+                };
+
+                const animation = (currentTime) => {
+                    if (startTime === null) startTime = currentTime;
+                    const timeElapsed = currentTime - startTime;
+                    const run = ease(timeElapsed, startPosition, targetPosition - startPosition, duration);
+                    window.scrollTo(0, run);
+                    if (timeElapsed < duration) requestAnimationFrame(animation);
+                };
+
+                requestAnimationFrame(animation);
+            };
+
+            const navItems = document.querySelectorAll('.nav-links a');
+
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute("href");
+                    smoothScroll(targetId, 1000);
+                });
+            });
+
+            // Formulário de Contato - Validação Simples
+            const form = document.querySelector("form");
+            form.addEventListener("submit", function(event) {
+                const name = document.querySelector("#nome").value;
+                const email = document.querySelector("#email").value;
+                const message = document.querySelector("#mensagem").value;
+
+                if (name === "" || email === "" || message === "") {
+                    alert("Por favor, preencha todos os campos.");
+                    event.preventDefault();
+                } else {
+                    alert("Mensagem enviada com sucesso!");
+                }
+            });
+
+            // Adicione mais funcionalidades conforme necessário
+        });
+    </script>
+
+
+
+    <section class="banner">
+        <div class="banner-content">
+            <h1>Transforme Seus Espaços com Design de Interiores</h1>
+            <p>Crie ambientes que refletem sua personalidade e estilo de vida.</p>
+            <a href="#sobre" class="btn">Saiba Mais</a>
+        </div>
+    </section>
+
+    <section id="sobre" class="sobre">
+        <div class="container">
+            <h2>Sobre Nós</h2>
+            <p>Somos especialistas em design de interiores, ajudando você a criar espaços únicos e personalizados.</p>
+        </div>
+    </section>
+
+    <section class="servicos">
+        <div class="container">
+            <h2>Nossos Serviços</h2>
+            <div class="cards">
+                <div class="card">
+                    <img src="img/36de247f5915fe277d5ddbf107a4391a.jpg" alt="Design Residencial">
+                    <h3>Design Residencial</h3>
+                    <p>Transforme sua casa em um lar aconchegante e estiloso.</p>
+                </div>
+                <div class="card">
+                    <img src="img/20170803casas-decoradas-5.jpg" alt="Design Comercial">
+                    <h3>Design Comercial</h3>
+                    <p>Crie ambientes de trabalho funcionais e atraentes.</p>
+                </div>
+                <div class="card">
+                    <img src="img/images (1).jpg" alt="Consultoria">
+                    <h3>Consultoria</h3>
+                    <p>Receba orientação profissional para seus projetos de design.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="planos">
+        <div class="container">
+            <h2>Nossos Planos</h2>
+            <div class="cards-planos">
+                <div class="card-plano">
+                    <h3>Básico</h3>
+                    <p>Para quem deseja um toque especial em pequenos espaços.</p>
+                    <ul>
+                        <li>Consultoria inicial</li>
+                        <li>Projeto de um cômodo</li>
+                        <li>Suporte via e-mail</li>
+                    </ul>
+                    <button class="btn">Escolher Plano</button>
+                </div>
+                <div class="card-plano">
+                    <h3>Intermediário</h3>
+                    <p>Ideal para projetos de tamanho médio com múltiplos ambientes.</p>
+                    <ul>
+                        <li>Consultoria inicial</li>
+                        <li>Projeto de até três cômodos</li>
+                        <li>Visita técnica</li>
+                        <li>Suporte via e-mail e telefone</li>
+                    </ul>
+                    <button class="btn">Escolher Plano</button>
+                </div>
+                <div class="card-plano">
+                    <h3>Premium</h3>
+                    <p>Para quem deseja um projeto completo e personalizado.</p>
+                    <ul>
+                        <li>Consultoria inicial</li>
+                        <li>Projeto completo</li>
+                        <li>Visita técnica</li>
+                        <li>Suporte total</li>
+                        <li>Acompanhamento de obra</li>
+                    </ul>
+                    <button class="btn">Escolher Plano</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="formulario-contato">
+        <div class="container">
+            <h2>Entre em Contato</h2>
+            <form action="#" method="post">
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefone">Telefone</label>
+                    <input type="tel" id="telefone" name="telefone">
+                </div>
+                <div class="form-group">
+                    <label for="mensagem">Mensagem</label>
+                    <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn">Enviar</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Menu de navegação responsivo
+            const navToggle = document.querySelector(".nav-toggle");
+            const navLinks = document.querySelector(".nav-links");
+    
+            navToggle.addEventListener("click", function() {
+                navLinks.classList.toggle("active");
+            });
+    
+            // Smooth scroll para links de navegação
+            const smoothScroll = (target, duration) => {
+                const targetElement = document.querySelector(target);
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - 50;
+                const startPosition = window.pageYOffset;
+                let startTime = null;
+    
+                const ease = (t, b, c, d) => {
+                    t /= d / 2;
+                    if (t < 1) return c / 2 * t * t + b;
+                    t--;
+                    return -c / 2 * (t * (t - 2) - 1) + b;
+                };
+    
+                const animation = (currentTime) => {
+                    if (startTime === null) startTime = currentTime;
+                    const timeElapsed = currentTime - startTime;
+                    const run = ease(timeElapsed, startPosition, targetPosition - startPosition, duration);
+                    window.scrollTo(0, run);
+                    if (timeElapsed < duration) requestAnimationFrame(animation);
+                };
+    
+                requestAnimationFrame(animation);
+            };
+    
+            const navItems = document.querySelectorAll('.nav-links a');
+    
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute("href");
+                    smoothScroll(targetId, 1000);
+                });
+            });
+    
+            // Formulário de Contato - Validação Simples
+            const form = document.querySelector("form");
+            form.addEventListener("submit", function(event) {
+                const name = document.querySelector("#nome").value;
+                const email = document.querySelector("#email").value;
+                const message = document.querySelector("#mensagem").value;
+    
+                if (name === "" || email === "" || message === "") {
+                    alert("Por favor, preencha todos os campos.");
+                    event.preventDefault();
+                } else {
+                    alert("Mensagem enviada com sucesso!");
+                }
+            });
+    
+            // Adicione mais funcionalidades conforme necessário
+        });
+    </script>
+
+    <footer>
+        <div class="container">
+            <div class="footer-info">
+                <p>&copy; 2024 Design de Interiores. Todos os direitos reservados.</p>
+            </div>
+            <div class="footer-social">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+    
+
+</body>
+
+</html>
